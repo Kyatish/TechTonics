@@ -22,52 +22,46 @@ import dao.UpcomingTalkDao;
  */
 @WebServlet("/TalkDesk")
 public class UpcomingTalkDetails extends HttpServlet {
-	private static final long serialVersionUID = 1L;       
-    private UpcomingTalkDao uptdao;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpcomingTalkDetails() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void init() throws ServletException
-	{
-		try
-		{
+	private static final long serialVersionUID = 1L;
+	private UpcomingTalkDao uptdao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public UpcomingTalkDetails() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			uptdao = new UpcomingTalkDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			uptdao = new UpcomingTalkDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (uptdao != null)
-			try
-			{
+			try {
 				uptdao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		List<UpcomingTalk> talkList= new ArrayList<>();
+		List<UpcomingTalk> talkList = new ArrayList<>();
 		HttpSession session = request.getSession();
 		try {
 			talkList = uptdao.getAllUpcomingTalks();
@@ -75,20 +69,24 @@ public class UpcomingTalkDetails extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(talkList.isEmpty())
-			session.setAttribute("statusMessage", "No upcoming tech talks to show.");
+		if (talkList.isEmpty())
+			session.setAttribute("statusMessage",
+					"No upcoming tech talks to show.");
 		else
 			session.setAttribute("talkLists", talkList);
-		if(((TechUser) session.getAttribute("UserDetails")).getEmail().equals("yatish@atmecs.com"))
+		if (((TechUser) session.getAttribute("UserDetails")).getEmail().equals(
+				"yatish@atmecs.com"))
 			response.sendRedirect("WebPages/LoginRegistrationForm/AdminHome.jsp");
 		else
 			response.sendRedirect("WebPages/LoginRegistrationForm/employee.jsp");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

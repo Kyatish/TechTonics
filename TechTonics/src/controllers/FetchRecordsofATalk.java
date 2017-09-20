@@ -22,49 +22,43 @@ import dao.AudienceDao;
 @WebServlet("/FetchRecordsofATalk")
 public class FetchRecordsofATalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private AudienceDao audianceDao;  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FetchRecordsofATalk() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void init() throws ServletException
-	{
-		try
-		{
+	private AudienceDao audianceDao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public FetchRecordsofATalk() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			audianceDao = new AudienceDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			audianceDao = new AudienceDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (audianceDao != null)
-			try
-			{
+			try {
 				audianceDao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<Audience> audienceListbyTalkId = new ArrayList<>();
 		HttpSession session = request.getSession();
@@ -75,9 +69,9 @@ public class FetchRecordsofATalk extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String status = "Audience List for TalkId: "+ talkId;
-		if(audienceListbyTalkId.isEmpty())
-			status= "No members yet registered.";
+		String status = "Audience List for TalkId: " + talkId;
+		if (audienceListbyTalkId.isEmpty())
+			status = "No members yet registered.";
 		else
 			session.setAttribute("audienceList", audienceListbyTalkId);
 		session.setAttribute("statusMessageFetchDetail", status);
@@ -85,9 +79,11 @@ public class FetchRecordsofATalk extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

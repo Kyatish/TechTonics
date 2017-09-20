@@ -22,53 +22,48 @@ import pojos.UpcomingTalk;
 @WebServlet("/FetchUpcomingTalksOfAUser")
 public class FetchUpcomingTalksOfAUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UpcomingTalkDao uptdao;   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public FetchUpcomingTalksOfAUser() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private UpcomingTalkDao uptdao;
 
-    public void init() throws ServletException
-	{
-		try
-		{
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public FetchUpcomingTalksOfAUser() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			uptdao = new UpcomingTalkDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			uptdao = new UpcomingTalkDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (uptdao != null)
-			try
-			{
+			try {
 				uptdao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
-	
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<UpcomingTalk> talkList = new ArrayList<>();
 		HttpSession session = request.getSession();
-		
-		TechUser tu = (TechUser)(session.getAttribute("UserDetails"));
+
+		TechUser tu = (TechUser) (session.getAttribute("UserDetails"));
 		String email = tu.getEmail();
 		try {
 			talkList = uptdao.getUpcomingTalksByEmailId(email);
@@ -77,18 +72,21 @@ public class FetchUpcomingTalksOfAUser extends HttpServlet {
 			System.out.println("Error in fetching details");
 			e.printStackTrace();
 		}
-		if(talkList.isEmpty())
-			session.setAttribute("statusMessageUserTalk", "You have not registered for any new tech talk.");
+		if (talkList.isEmpty())
+			session.setAttribute("statusMessageUserTalk",
+					"You have not registered for any new tech talk.");
 		else
-			session.setAttribute("MytalkList", talkList);		
+			session.setAttribute("MytalkList", talkList);
 		response.sendRedirect("WebPages/LoginRegistrationForm/UserTalkDetails.jsp");
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

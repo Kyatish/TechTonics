@@ -21,48 +21,43 @@ import dao.UpcomingTalkDao;
 @WebServlet("/UpdateTalk")
 public class EditTalkServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UpcomingTalkDao uptdao;  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EditTalkServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private UpcomingTalkDao uptdao;
 
-    public void init() throws ServletException
-	{
-		try
-		{
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EditTalkServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			uptdao = new UpcomingTalkDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			uptdao = new UpcomingTalkDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (uptdao != null)
-			try
-			{
+			try {
 				uptdao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String title = request.getParameter("titleTalk");
 		String venue = request.getParameter("venueTalk");
@@ -70,17 +65,18 @@ public class EditTalkServlet extends HttpServlet {
 		Date date = Date.valueOf(request.getParameter("dateTalk"));
 		System.out.println(request.getParameter("talkIdEmployee"));
 		String timeString = request.getParameter("timeTalk");
-		if(timeString.length()==5){
-			timeString = timeString.concat(":00");						
+		if (timeString.length() == 5) {
+			timeString = timeString.concat(":00");
 		}
 		Time time = Time.valueOf(timeString);
-		
+
 		String description = request.getParameter("descriptionTalk");
 		int talkId = Integer.parseInt(request.getParameter("talkIdEmployee"));
-		UpcomingTalk newTalk= new UpcomingTalk(title,presenter,venue,date,time,description);
+		UpcomingTalk newTalk = new UpcomingTalk(title, presenter, venue, date,
+				time, description);
 		String status = "Updation Successful";
 		try {
-			if(!uptdao.updateTalkById(newTalk, talkId))
+			if (!uptdao.updateTalkById(newTalk, talkId))
 				status = "Sorry Updation failed";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -92,9 +88,11 @@ public class EditTalkServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

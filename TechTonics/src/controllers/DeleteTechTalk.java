@@ -18,57 +18,52 @@ import dao.UpcomingTalkDao;
 @WebServlet("/DeleteTalk")
 public class DeleteTechTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UpcomingTalkDao uptdao;   
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public DeleteTechTalk() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void init() throws ServletException
-	{
-		try
-		{
+	private UpcomingTalkDao uptdao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public DeleteTechTalk() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			uptdao = new UpcomingTalkDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			uptdao = new UpcomingTalkDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
-    
-    public void destroy()
-	{
+
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (uptdao != null)
-			try
-			{
+			try {
 				uptdao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		int talkId = Integer.parseInt(request.getParameter("talkIdEmployee"));
 		System.out.println(talkId);
 		String status = "Deletion Successful";
 		try {
-			if(!uptdao.deleteTalkById(talkId));
-				status = "Sorry Deletion failed";
+			if (!uptdao.deleteTalkById(talkId))
+				;
+			status = "Sorry Deletion failed";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -76,13 +71,15 @@ public class DeleteTechTalk extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("statusMessage", status);
 		response.sendRedirect("WebPages/LoginRegistrationForm/AdminHome.jsp");
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 

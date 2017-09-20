@@ -22,75 +22,75 @@ import pojos.TechUser;
 @WebServlet("/SignUp")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private TechUserDao tudao;
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SignUpServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void init() throws ServletException
-	{
-		try
-		{
+	private TechUserDao tudao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public SignUpServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			tudao = new TechUserDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			tudao = new TechUserDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (tudao != null)
-			try
-			{
+			try {
 				tudao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
-
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		TechUser tu = new TechUser(request.getParameter("emailsignup"),request.getParameter("namesignup"),request.getParameter("passwordsignup"),Date.valueOf(LocalDate.now()));
+		TechUser tu = new TechUser(request.getParameter("emailsignup"),
+				request.getParameter("namesignup"),
+				request.getParameter("passwordsignup"), Date.valueOf(LocalDate
+						.now()));
 		String status = "Registeration Successful. Please login for further details";
-			try {
-				if(!tudao.setTechUserDetails(tu))
-					status = "Registeration failed";			
-				else
-					response.getWriter().write("Registeration failed");
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+		try {
+			if (!tudao.setTechUserDetails(tu))
+				status = "Registeration failed";
+			else
+				response.getWriter().write("Registeration failed");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		HttpSession session = request.getSession();
 		session.setAttribute("signupStatus", status);
-		//RequestDispatcher rd=request.getRequestDispatcher("WebPages/LoginRegistrationForm/index.jsp");  
-		//servlet2 is the url-pattern of the second servlet  
-		  
-		//rd.forward(request, response);//method may be include or forward  
+		// RequestDispatcher
+		// rd=request.getRequestDispatcher("WebPages/LoginRegistrationForm/index.jsp");
+		// servlet2 is the url-pattern of the second servlet
+
+		// rd.forward(request, response);//method may be include or forward
 		response.sendRedirect("WebPages/LoginRegistrationForm/index.jsp");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

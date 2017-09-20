@@ -21,64 +21,60 @@ import pojos.UpcomingTalk;
 @WebServlet("/CreateTalk")
 public class CreateTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UpcomingTalkDao uptdao;  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreateTalk() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-    public void service() throws ServletException{
-    	
-    }
-    
-    public void init() throws ServletException
-	{
-		try
-		{
+	private UpcomingTalkDao uptdao;
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CreateTalk() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void service() throws ServletException {
+
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			uptdao = new UpcomingTalkDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			uptdao = new UpcomingTalkDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (uptdao != null)
-			try
-			{
+			try {
 				uptdao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String title = request.getParameter("titleTalk");
 		String venue = request.getParameter("venueTalk");
 		String presenter = request.getParameter("presenterTalk");
 		Date date = Date.valueOf(request.getParameter("dateTalk"));
-		//System.out.println(request.getParameter("timeTalk")+":00");
-		Time time = Time.valueOf(request.getParameter("timeTalk")+":00");
+		// System.out.println(request.getParameter("timeTalk")+":00");
+		Time time = Time.valueOf(request.getParameter("timeTalk") + ":00");
 		String description = request.getParameter("descriptionTalk");
-		UpcomingTalk newTalk= new UpcomingTalk(title,presenter,venue,date,time,description);
+		UpcomingTalk newTalk = new UpcomingTalk(title, presenter, venue, date,
+				time, description);
 		String status = "Insertion Successful";
 		try {
-			if(!uptdao.setNewTechTalk(newTalk))
+			if (!uptdao.setNewTechTalk(newTalk))
 				status = "Sorry Insertion failed";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -90,9 +86,11 @@ public class CreateTalk extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

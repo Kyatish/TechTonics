@@ -24,65 +24,64 @@ import pojos.UpcomingTalk;
 @WebServlet("/RegisterationForTalk")
 public class RegisterationForTalk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private AudienceDao audianceDao; 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterationForTalk() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private AudienceDao audianceDao;
 
-    public void init() throws ServletException
-	{
-		try
-		{
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public RegisterationForTalk() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void init() throws ServletException {
+		try {
 			System.out.println("in init" + Thread.currentThread());
-			//ServletConfig sc = getServletConfig();
-			audianceDao = new AudienceDao();			
-		}
-		catch (Exception e)
-		{
+			// ServletConfig sc = getServletConfig();
+			audianceDao = new AudienceDao();
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Err in init", e);
 		}
 	}
 
-	public void destroy()
-	{
+	public void destroy() {
 		System.out.println("in destroy" + Thread.currentThread());
 		if (audianceDao != null)
-			try
-			{
+			try {
 				audianceDao.cleanUp();
-			}
-			catch (Exception e)
-			{
+			} catch (Exception e) {
 				throw new RuntimeException("err in destroy", e);
-			}		
+			}
 	}
+
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
-		TechUser techUser = (TechUser)session.getAttribute("UserDetails");
-		//System.out.println(request.getParameter("talkIdEmployee"));
+		TechUser techUser = (TechUser) session.getAttribute("UserDetails");
+		// System.out.println(request.getParameter("talkIdEmployee"));
 		int talkId = Integer.parseInt(request.getParameter("talkIdEmployee"));
-		//System.out.println(talkId);
-		Audience audience = new Audience(talkId,techUser.getEmail(),techUser.getUserName());
+		// System.out.println(talkId);
+		Audience audience = new Audience(talkId, techUser.getEmail(),
+				techUser.getUserName());
 		String status = "You are successfully registered for TalkId: " + talkId;
-		if(!audianceDao.insertNewAudience(audience))
+		if (!audianceDao.insertNewAudience(audience))
 			status = "You are already registered for this talk.";
 		session.setAttribute("statusMessage", status);
 		response.sendRedirect("WebPages/LoginRegistrationForm/employee.jsp");
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
