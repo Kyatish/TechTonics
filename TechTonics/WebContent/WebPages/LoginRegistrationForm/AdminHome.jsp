@@ -48,7 +48,7 @@
 	<div align="center">
 	<h3>${StatusMessage}</h3>
         <table border="1" cellpadding="5">
-            <caption><h1 align="center"><b>List of Upcoming Talks</b></h1></caption>
+           <caption><h1 align="center"><b>List of Upcoming Talks</b></h1></caption>
             <tr>
                 <th>TalkId</th>
                 <th>Title</th>
@@ -70,14 +70,14 @@
                     <td><c:out value="${talk.time}" /></td>
                     <td><c:out value="${talk.description}" /></td>
 					<td><form action="UpdateTalk.jsp" method = "post">
-							<input type="hidden" name="talkIdEmployee" value="${talk.talkId}"></input>
-							<input type="hidden" name="talkTitleEmployee" value="${talk.title}"></input>
-							<input type="hidden" name="talkPresenterEmployee" value="${talk.presenter}"></input>
-							<input type="hidden" name="talkVenueEmployee" value="${talk.venue}"></input>
-							<input type="hidden" name="talkDateEmployee" value="${talk.date}"></input>
-							<input type="hidden" name="talkTimeEmployee" value="${talk.time}"></input>
-							<input type="hidden" name="talkDescriptionEmployee" value="${talk.description}"></input>
-							<input type="submit" name="Update" value="Update"></input>
+							<input type="hidden" name="talkIdEmployee" value="${talk.talkId}"/>
+							<input type="hidden" name="talkTitleEmployee" value="${talk.title}"/>
+							<input type="hidden" name="talkPresenterEmployee" value="${talk.presenter}"/>
+							<input type="hidden" name="talkVenueEmployee" value="${talk.venue}"/>
+							<input type="hidden" name="talkDateEmployee" value="${talk.date}"/>
+							<input type="hidden" name="talkTimeEmployee" value="${talk.time}"/>
+							<input type="hidden" name="talkDescriptionEmployee" value="${talk.description}"/>
+							<input type="submit" name="Update" value="Update"/>
 					</form>
 					<form action="../../DeleteTalk" method = "get">
 							<input type="hidden" name="talkIdEmployee" value="${talk.talkId}"></input>

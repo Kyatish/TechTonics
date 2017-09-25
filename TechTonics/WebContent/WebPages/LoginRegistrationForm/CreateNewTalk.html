@@ -5,7 +5,7 @@
 <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8" http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
         <title>Create New Talk</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
@@ -22,7 +22,7 @@
             <header>
                 <h1>New Tech Talk Creation Form </h1>				
             </header>
-            <section>				
+            		
                 <div id="container_demo" >
                     <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
                     <a class="hiddenanchor" id="toregister"></a>
@@ -30,32 +30,34 @@
                     <div id="wrapper">
                         
                         <div id="createTalk" class="animate form">
-                            <form  action="../../CreateTalk" autocomplete="on"> 
+                            <form  class="form-horizontal" action="../../CreateTalk" autocomplete="on"> 
                                 <h1> Create New Talk </h1> 
                                 <p> 
-                                    <label for="Title" class="uname" data-icon="u">Title *</label>
-                                    <input id="Title" name="titleTalk" required="required" type="text" placeholder="MyTitle" />
+                                    <label class="control-label col-sm-2" for="Title" data-icon="u">Title *</label>
+                                    <input class="form-control" id="Title" name="titleTalk" required="required" type="text" placeholder="MyTitle" />
                                 </p>
                                 <p> 
-                                    <label for="Presenter" class="uname" data-icon="u">Presenter *</label>
-                                    <input id="Presenter" name="presenterTalk" required="required" type="text" placeholder="Presenter" />
+                                    <label class="control-label col-sm-2" for="Presenter" data-icon="u">Presenter *</label>
+                                    <input class="form-control" id="Presenter" name="presenterTalk" required="required" type="text" placeholder="Presenter" />
                                 </p>
                                 <p> 
-                                    <label for="Venue" class="uname" data-icon="u">Venue *</label>
-                                    <input id="Venue" name="venueTalk" required="required" type="text" placeholder="Venue" />
+                                    <label class="control-label col-sm-2" for="Venue" data-icon="u">Venue *</label>
+                                    <input class="form-control" id="Venue" name="venueTalk" required="required" type="text" placeholder="Address" />
                                 </p>
                                 <p> 
-                                    <label for="Date" class="date">Tech Talk Date* </label>
-                                    <input id="dateTalk" name="dateTalk" required="required" type="date" placeholder="today"/>
+                                    <label class="control-label col-sm-2" for="Date">Tech Talk Date* </label>
+                                    <input class="form-control" id="dateTalk" name="dateTalk" required="required" type="date" placeholder="yyyy-mm-dd"/>
                                 </p>
                                 <p> 
-                                    <label for="Time" class="time">Time </label>
-                                    <input id="timeTalk" name="timeTalk" required="required" type="time" placeholder="default"/>
+                                    <label class="control-label col-sm-2" for="Time">Time* </label>
+                                    <input class="form-control" id="timeTalk" name="timeTalk" required="required" type="time" placeholder="hh:mm"/>
                                 </p>
-                                <p> 
-                                    <label for="Description" class="description" data-icon="u">Description *</label>
-                                    <input style="height:200px;font-size:14pt;" id="description" name="descriptionTalk" required="required" type="text" placeholder="Venue" />
-                                </p>
+                                
+                                	<div class="form-group"> 
+                                    <label class="control-label col-sm-2" for="Description" data-icon="u">Description *</label>
+                                    <textarea class="form-control" id="description" rows="5" name="descriptionTalk" required="required" placeholder="Description"></textarea>
+                                	</div>
+                                
                                 <p class="signin button"> 
 									<input type="submit" value="Submit"> 
 								</p>  								
@@ -64,7 +66,7 @@
 						
                     </div>
                 </div>  
-            </section>
+            
         </div>
     </body>
 </html>

@@ -31,33 +31,33 @@
                     <a class="hiddenanchor" id="tologin"></a>
                     <div id="wrapper">
                         <a href="AdminHome.jsp">go back</a>
-                        <div id="createTalk" class="animate form">
+                        <div id="createTalk" class="form-horizontal">
                             <form  action="../../UpdateTalk" autocomplete="on"> 
                                 <h1> Update Talk Details for TalkId: ${param.talkIdEmployee}</h1> 
                                 <p> 
-                                    <label for="Title" class="uname" data-icon="u">Title *</label>
+                                    <label class="control-label col-sm-2" for="Title" data-icon="u">Title *</label>
                                     <input id="Title" name="titleTalk" value=${param.talkTitleEmployee} type="text" placeholder= ${param.talkTitleEmployee}/>
                                 </p>
                                 <p> 
-                                    <label for="Presenter" class="uname" data-icon="u">Presenter *</label>
+                                    <label class="control-label col-sm-2" for="Presenter" data-icon="u">Presenter *</label>
                                     <input id="Presenter" name="presenterTalk" value=${param.talkPresenterEmployee} type="text" placeholder=${param.talkPresenterEmployee} />
                                 </p>
                                 <p> 
-                                    <label for="Venue" class="uname" data-icon="u">Venue *</label>
+                                    <label class="control-label col-sm-2" for="Venue" data-icon="u">Venue *</label>
                                     <input id="Venue" name="venueTalk" value=${param.talkVenueEmployee} type="text" placeholder=${param.talkVenueEmployee} />
                                 </p>
                                 <p> 
-                                    <label for="Date" class="date">Tech Talk Date* </label>
+                                    <label class="control-label col-sm-2" for="Date">Tech Talk Date* </label>
                                     <input id="dateTalk" name="dateTalk" value=${param.talkDateEmployee} type="date" placeholder=${param.talkDateEmployee}/>
                                 </p>
                                 <p> 
-                                    <label for="Time" class="time">Time *</label>
+                                    <label class="control-label col-sm-2" for="Time">Time *</label>
                                     <input id="timeTalk" name="timeTalk" value=${param.talkTimeEmployee} type="time" placeholder=${param.talkTimeEmployee} />
                                 </p>
                                 <p> 
                                     
-                                    <label for="Description" class="description" data-icon="u">Description *</label>
-                                    <input style="height:200px;font-size:14pt;" id="description" name="descriptionTalk" value=${param.talkDescriptionEmployee} type="text" placeholder=${param.talkDescriptionEmployee} />
+                                    <label class="control-label col-sm-2" for="Description" data-icon="u">Description *</label>
+                                    <textarea id="description" name="descriptionTalk" value=${param.talkDescriptionEmployee} type="text" placeholder=${param.talkDescriptionEmployee} ></textarea>
                                 </p>
                                 	<input type="hidden" name="talkIdEmployee" value=${param.talkIdEmployee}></input>
                                 <p class="signin button">                                	 
