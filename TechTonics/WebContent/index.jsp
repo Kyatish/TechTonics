@@ -114,10 +114,10 @@
         </div>
     </body>
 </html>
-</html>
 
-<script type="text/javascript" src="angular.min.js"></script>
-<script>
+
+<script type="text/javascript" src="JS/angular.min.js">
+
 var app = angular.module("formApp",[]);
 app.controller("formController",function(){});
 </script>
