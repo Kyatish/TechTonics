@@ -75,7 +75,7 @@ public class FetchRecordsofATalk extends HttpServlet {
 		else
 			session.setAttribute("audienceList", audienceListbyTalkId);
 		session.setAttribute("statusMessageFetchDetail", status);
-		response.sendRedirect("WebPages/LoginRegistrationForm/TalkDetails.jsp");
+		response.sendRedirect("temolates/users/TalkDetails.jsp");
 	}
 
 	/**

@@ -70,7 +70,7 @@ public class DeleteTechTalk extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("statusMessage", status);
-		response.sendRedirect("WebPages/LoginRegistrationForm/AdminHome.jsp");
+		response.sendRedirect("templates/admins/AdminHome.jsp");
 
 	}
 
