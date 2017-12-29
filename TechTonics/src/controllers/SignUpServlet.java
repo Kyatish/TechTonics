@@ -82,7 +82,7 @@ public class SignUpServlet extends HttpServlet {
 		// servlet2 is the url-pattern of the second servlet
 
 		// rd.forward(request, response);//method may be include or forward
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("WebPages/LoginRegistrationForm/index.jsp");
 	}
 
 	/**

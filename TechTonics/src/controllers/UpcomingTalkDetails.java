@@ -76,9 +76,9 @@ public class UpcomingTalkDetails extends HttpServlet {
 			session.setAttribute("talkLists", talkList);
 		if (((TechUser) session.getAttribute("UserDetails")).getEmail().equals(
 				"yatish@atmecs.com"))
-			response.sendRedirect("templates/admins/AdminHome.jsp");
+			response.sendRedirect("WebPages/LoginRegistrationForm/AdminHome.jsp");
 		else
-			response.sendRedirect("templates/users/employee.jsp");
+			response.sendRedirect("WebPages/LoginRegistrationForm/employee.jsp");
 	}
 
 	/**

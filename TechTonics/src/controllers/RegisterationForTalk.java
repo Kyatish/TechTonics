@@ -73,7 +73,7 @@ public class RegisterationForTalk extends HttpServlet {
 		if (!audianceDao.insertNewAudience(audience))
 			status = "You are already registered for this talk.";
 		session.setAttribute("statusMessage", status);
-		response.sendRedirect("templates/users/employee.jsp");
+		response.sendRedirect("WebPages/LoginRegistrationForm/employee.jsp");
 	}
 
 	/**

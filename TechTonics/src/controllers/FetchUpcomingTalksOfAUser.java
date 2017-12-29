@@ -77,7 +77,7 @@ public class FetchUpcomingTalksOfAUser extends HttpServlet {
 					"You have not registered for any new tech talk.");
 		else
 			session.setAttribute("MytalkList", talkList);
-		response.sendRedirect("templates/users/UserTalkDetails.jsp");
+		response.sendRedirect("WebPages/LoginRegistrationForm/UserTalkDetails.jsp");
 
 	}
 
