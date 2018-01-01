@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 
 public class DBUtilities {
 	static String drvr = "com.mysql.jdbc.Driver";
-	static String url = "jdbc:mysql://10.128.158.1:3306/tech_tonics";
+	static String url = "jdbc:mysql://mysql:3306/tech_tonics";
 	static String name = "root";
 	static String pass = "asdf123";
 
